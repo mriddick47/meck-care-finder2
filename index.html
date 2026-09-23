@@ -49,7 +49,7 @@ button{font:inherit}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;min-height:3.5rem;gap:.75rem}
 .brand{display:inline-flex;align-items:center;gap:.5rem;background:none;border:0;padding:0;min-height:2.75rem;color:var(--ink);font-weight:700;cursor:pointer;text-align:left}
 .brand svg{color:var(--brand);flex:none}
-.lang{min-height:2.75rem;padding:0 1rem;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;font-weight:700;cursor:pointer}
+.lang{min-height:2.75rem;padding:0 .8rem;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;font-weight:700;cursor:pointer}.langs{display:flex;gap:.35rem;align-items:center}.lang[aria-pressed="true"]{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
 
 main{padding-top:1.5rem;padding-bottom:calc(7.5rem + env(safe-area-inset-bottom,0px))}
 h1{font-size:clamp(1.85rem,7.4vw,2.35rem);line-height:1.12;letter-spacing:-.015em;margin:0 0 .75rem;font-weight:700}
@@ -171,7 +171,7 @@ dialog[open]{animation:sheet .22s ease-out}
 <header class="top">
   <div class="wrap">
     <button class="brand" id="brand" data-act="home"></button>
-    <button class="lang" id="lang" data-act="lang"></button>
+    <div class="langs" role="group" aria-label="Language"><button class="lang" data-act="setlang" data-lang="en" lang="en">English</button><button class="lang" data-act="setlang" data-lang="es" lang="es">Español</button><button class="lang" data-act="setlang" data-lang="fr" lang="fr">Français</button></div>
   </div>
 </header>
 
@@ -741,10 +741,11 @@ dialog[open]{animation:sheet .22s ease-out}
     document.documentElement.lang = state.lang;
     $("#brand").innerHTML = icon("pin", 22) + "<span>" + esc(CONFIG.appName) + "</span>";
     $("#brand").setAttribute("aria-label", CONFIG.appName);
-    var lb = $("#lang");
-    lb.textContent = t("langBtn");
-    lb.setAttribute("aria-label", t("langAria"));
-    lb.setAttribute("lang", state.lang === "en" ? "es" : (state.lang === "es" ? "fr" : "en"));
+    Array.prototype.forEach.call(document.querySelectorAll("[data-lang]"), function (b) {
+      var active = b.getAttribute("data-lang") === state.lang;
+      b.setAttribute("aria-pressed", String(active));
+      if (active) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+    });
     var route = (location.hash || "#/").slice(2).split("/")[0];
     $("#dock").innerHTML =
       '<button class="btn btn-crisis" data-act="crisis">' + icon("phone", 22) + "<span>" + t("dockCrisis") + "</span></button>" +
@@ -972,8 +973,8 @@ dialog[open]{animation:sheet .22s ease-out}
     var el = e.target.closest("[data-act]");
     if (!el) return;
     var act = el.getAttribute("data-act");
-    if (act === "lang") {
-      state.lang = state.lang === "en" ? "es" : (state.lang === "es" ? "fr" : "en");
+    if (act === "setlang") {
+      state.lang = el.getAttribute("data-lang");
       render({ keep: true });
     } else if (act === "home") {
       go("#/");
