@@ -425,11 +425,11 @@ dialog[open]{animation:sheet .22s ease-out}
   };
 
   var CATS = {
-    crisis: { en: "Crisis support", es: "Apoyo en crisis" },
-    peer: { en: "Peer support", es: "Apoyo de pares" },
-    care: { en: "Ongoing care", es: "Atención continua" },
-    info: { en: "Information and referrals", es: "Información y referencias" },
-    groups: { en: "Specific communities", es: "Comunidades específicas" }
+    crisis: { en: "Crisis support", es: "Apoyo en crisis", fr: "Soutien en situation de crise" },
+    peer: { en: "Peer support", es: "Apoyo de pares", fr: "Soutien par les pairs" },
+    care: { en: "Ongoing care", es: "Atención continua", fr: "Soins continus" },
+    info: { en: "Information and referrals", es: "Información y referencias", fr: "Information et orientations" },
+    groups: { en: "Specific communities", es: "Comunidades específicas", fr: "Communautés spécifiques" }
   };
 
   /* ------------------------------------------------------------------
@@ -440,6 +440,67 @@ dialog[open]{animation:sheet .22s ease-out}
      Only mark a flag true when the source says so. Leave it false if unsure.
      ------------------------------------------------------------------ */
   var RES = [
+    {
+      id: "monarch-meck", cat: "care", scope: "local", name: "Monarch Behavioral Health Outpatient Office – Mecklenburg County",
+      h24: false, free: false, noIns: false, spanish: false, text: false, tags: ["ongoing"],
+      kw: "therapy psychiatry medication management substance use children adults same day open access",
+      phones: [{ n: "7045253255", d: "704-525-3255" }],
+      address: "3057 Freedom Drive, Charlotte, NC 28208",
+      web: "https://monarchnc.org/resource/outpatient-services-mecklenburg-county/",
+      desc: { en: "Outpatient therapy and psychiatric services for children and adults, including medication management, substance use services and same-day Open Access.", es: "Terapia ambulatoria y servicios psiquiátricos para niños y adultos, incluido manejo de medicamentos, servicios por uso de sustancias y acceso el mismo día.", fr: "Thérapie ambulatoire et services psychiatriques pour enfants et adultes, y compris la gestion des médicaments, les services liés à l’usage de substances et l’accès le jour même." },
+      hours: { en: "Monday–Friday, 8 a.m.–5 p.m.; closed for lunch noon–1 p.m. Last Open Access walk-in at 3 p.m.", es: "Lunes a viernes, 8 a.m.–5 p.m.; cerrado de 12–1 p.m. Último acceso sin cita a las 3 p.m.", fr: "Du lundi au vendredi, de 8 h à 17 h; fermé de 12 h à 13 h. Dernière admission sans rendez-vous à 15 h." },
+      who: { en: "Children and adults seeking outpatient mental health or substance use care.", es: "Niños y adultos que buscan atención ambulatoria de salud mental o uso de sustancias.", fr: "Enfants et adultes recherchant des soins ambulatoires en santé mentale ou liés à l’usage de substances." },
+      cost: { en: "Call to confirm insurance, eligibility and cost.", es: "Llame para confirmar seguro, elegibilidad y costo.", fr: "Appelez pour confirmer l’assurance, l’admissibilité et le coût." },
+      langs: { en: "Ask about language services when you call.", es: "Pregunte por servicios de idiomas al llamar.", fr: "Demandez les services linguistiques lors de votre appel." },
+      tip: { en: "Ask about Open Access if you need a same-day first assessment.", es: "Pregunte por Open Access si necesita una primera evaluación el mismo día.", fr: "Demandez l’accès sans rendez-vous si vous avez besoin d’une première évaluation le jour même." },
+      source: "Monarch"
+    },
+    {
+      id: "cchc-behavioral", cat: "care", scope: "local", name: "Charlotte Community Health Clinic – Behavioral Health",
+      h24: false, free: false, noIns: true, spanish: true, text: false, tags: ["ongoing"],
+      kw: "counseling depression anxiety addiction trauma grief CBT uninsured sliding scale children adults",
+      phones: [{ n: "7043166561", d: "704-316-6561" }],
+      address: "5301 Wilkinson Blvd, Charlotte, NC 28208",
+      web: "https://charlottecommunityhealth.org/en/what-we-do/behavioral-health/",
+      desc: { en: "Integrated behavioral health care with licensed clinical social workers, including brief counseling for depression, anxiety, addiction, trauma and grief. In-person and virtual visits are available.", es: "Atención integrada de salud conductual con trabajadores sociales clínicos con licencia, incluida consejería breve para depresión, ansiedad, adicción, trauma y duelo. Hay visitas presenciales y virtuales.", fr: "Soins intégrés de santé comportementale avec des travailleurs sociaux cliniques agréés, notamment pour la dépression, l’anxiété, la dépendance, les traumatismes et le deuil. Visites en personne et virtuelles." },
+      hours: { en: "Hours vary by clinic. Call for current appointment availability.", es: "El horario varía según la clínica. Llame para conocer la disponibilidad.", fr: "Les horaires varient selon la clinique. Appelez pour connaître les disponibilités." },
+      who: { en: "Children, adolescents and adults.", es: "Niños, adolescentes y adultos.", fr: "Enfants, adolescents et adultes." },
+      cost: { en: "Accepts major insurance, Medicaid and Medicare. An income-based discount program is available for people without insurance.", es: "Acepta seguros principales, Medicaid y Medicare. Hay un programa de descuento según ingresos para personas sin seguro.", fr: "Accepte les principales assurances, Medicaid et Medicare. Un programme de réduction selon le revenu est offert aux personnes sans assurance." },
+      langs: { en: "The clinic serves patients from many language backgrounds; ask about language assistance.", es: "La clínica atiende a pacientes de muchos idiomas; pregunte por asistencia lingüística.", fr: "La clinique accueille des patients de nombreuses langues; demandez une assistance linguistique." },
+      tip: { en: "New patients complete an application before scheduling. Ask specifically for behavioral health services.", es: "Los pacientes nuevos completan una solicitud antes de programar. Pida específicamente servicios de salud conductual.", fr: "Les nouveaux patients remplissent une demande avant la prise de rendez-vous. Demandez spécifiquement les services de santé comportementale." },
+      source: "Charlotte Community Health Clinic"
+    },
+    {
+      id: "eastover", cat: "care", scope: "local", name: "Eastover Psychiatric Group",
+      h24: false, free: false, noIns: false, spanish: false, text: false, tags: ["ongoing"],
+      kw: "psychiatrist psychiatric medication psychotherapy counseling children adolescents adults",
+      phones: [{ n: "7043622663", d: "704-362-2663" }],
+      address: "3303 Latrobe Drive, Charlotte, NC 28211",
+      web: "https://www.eastoverpsych.com/",
+      desc: { en: "Independent outpatient practice offering psychiatric evaluation, medication management, psychotherapy and counseling.", es: "Práctica ambulatoria independiente que ofrece evaluación psiquiátrica, manejo de medicamentos, psicoterapia y consejería.", fr: "Cabinet ambulatoire indépendant offrant évaluation psychiatrique, gestion des médicaments, psychothérapie et counseling." },
+      hours: { en: "Call the office for current scheduling and hours.", es: "Llame para confirmar horarios y citas.", fr: "Appelez le cabinet pour les horaires et rendez-vous actuels." },
+      who: { en: "Children, adolescents and adults; services vary by clinician.", es: "Niños, adolescentes y adultos; los servicios varían según el profesional.", fr: "Enfants, adolescents et adultes; les services varient selon le clinicien." },
+      cost: { en: "Fees and insurance vary. Confirm coverage and out-of-pocket cost before scheduling.", es: "Las tarifas y el seguro varían. Confirme la cobertura y el costo antes de programar.", fr: "Les frais et assurances varient. Confirmez la couverture et les coûts avant le rendez-vous." },
+      langs: { en: "Ask about language services when scheduling.", es: "Pregunte por servicios de idiomas al programar.", fr: "Demandez les services linguistiques lors de la prise de rendez-vous." },
+      tip: { en: "Tell the office whether you are looking for psychiatry, medication management or therapy.", es: "Indique si busca psiquiatría, manejo de medicamentos o terapia.", fr: "Précisez si vous recherchez la psychiatrie, la gestion des médicaments ou une thérapie." },
+      source: "Eastover Psychiatric Group"
+    },
+    {
+      id: "family-first", cat: "care", scope: "local", name: "Family First Community Services",
+      h24: false, free: false, noIns: false, spanish: false, text: false, tags: ["ongoing", "family"],
+      kw: "children adolescents adults behavioral health substance use family outpatient therapy",
+      phones: [{ n: "7043643989", d: "704-364-3989" }],
+      address: "3705 Latrobe Drive, Suite 340, Charlotte, NC 28211",
+      web: "https://www.familyfirstcommunity.com/",
+      desc: { en: "Community behavioral health services for children, adolescents and adults with emotional, behavioral or substance use challenges.", es: "Servicios comunitarios de salud conductual para niños, adolescentes y adultos con desafíos emocionales, conductuales o de uso de sustancias.", fr: "Services communautaires de santé comportementale pour enfants, adolescents et adultes ayant des difficultés émotionnelles, comportementales ou liées à l’usage de substances." },
+      hours: { en: "Monday–Friday, 8:30 a.m.–5 p.m.", es: "Lunes a viernes, 8:30 a.m.–5 p.m.", fr: "Du lundi au vendredi, de 8 h 30 à 17 h." },
+      who: { en: "Children, adolescents, adults and families.", es: "Niños, adolescentes, adultos y familias.", fr: "Enfants, adolescents, adultes et familles." },
+      cost: { en: "Call to confirm eligibility, insurance and cost for the service you need.", es: "Llame para confirmar elegibilidad, seguro y costo.", fr: "Appelez pour confirmer l’admissibilité, l’assurance et le coût." },
+      langs: { en: "Ask about language services when you call.", es: "Pregunte por servicios de idiomas al llamar.", fr: "Demandez les services linguistiques lors de votre appel." },
+      tip: { en: "Describe the age of the person needing help and the type of support you are seeking.", es: "Indique la edad de la persona y el tipo de apoyo que busca.", fr: "Indiquez l’âge de la personne et le type de soutien recherché." },
+      source: "Family First Community Services"
+    },
+
     {
       id: "988", cat: "crisis", scope: "us", name: "988 Suicide & Crisis Lifeline",
       h24: true, free: true, noIns: true, spanish: true, text: true, tags: ["talk", "family"],
